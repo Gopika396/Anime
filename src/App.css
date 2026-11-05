@@ -1,0 +1,561 @@
+/* ============ Base layout ============ */
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at center,
+    #f20b24 0%,
+    #d90016 40%,
+    #a80010 100%
+  );
+}
+
+/* LAYER 1: soft red lighting */
+.bg-light {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(255, 70, 80, 0.55), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(120, 0, 10, 0.5), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(255, 90, 100, 0.25), transparent 35%);
+}
+
+/* ============ Brand ============ */
+.brand {
+  position: relative;
+  z-index: 5;
+  padding-top: 28px;
+  text-align: center;
+}
+
+.brand h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  letter-spacing: 0.18em;
+  color: #fff;
+}
+
+.brand-accent {
+  color: #ff9aa5;
+}
+
+/* ============ Main 3-part row ============ */
+.stage {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 80px);
+  padding: 0 24px 40px;
+}
+
+/* ============ Glass side panels ============ */
+.glass-panel {
+  width: 250px;
+  height: 330px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 190, 195, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-align: center;
+  cursor: default;
+}
+
+.panel-title {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.panel-sub {
+  margin-top: 3px;
+  font-size: 0.72rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.panel-hint {
+  margin-top: 6px;
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+}
+
+/* Left panel */
+.poster-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(80, 0, 10, 0.35);
+}
+
+.poster-zoom {
+  width: 100%;
+  height: 100%;
+}
+
+.poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.poster-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.65rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+.poster-info strong {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Right panel */
+.right-panel {
+  justify-content: flex-start;
+  padding-top: 70px;
+}
+
+.profile-icon {
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+}
+
+.profile-body {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 140px;
+}
+
+.specs {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.specs li {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.specs span {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.specs b {
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+/* ============ Centre 3D area ============ */
+.center-stage {
+  position: relative;
+  width: 360px;
+  height: 340px;
+  flex-shrink: 0;
+  perspective: 1000px;
+}
+
+.tilt-group {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.cards-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+/* Small dark cards */
+.mini-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 124px;
+  height: 178px;
+  margin-left: -62px;
+  margin-top: -100px;
+  border-radius: 14px;
+  background: #0b0407;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 30px rgba(60, 0, 8, 0.45);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.mini-card:hover,
+.mini-card.active {
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.35),
+    0 18px 30px rgba(60, 0, 8, 0.5);
+}
+
+.mini-float {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  animation: floatY 6s ease-in-out infinite;
+}
+
+.mini-art {
+  position: relative;
+  width: 100%;
+  height: 98px;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.mini-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mini-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.mini-name {
+  margin-top: 8px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.mini-series {
+  margin-top: 2px;
+  font-size: 0.5rem;
+  opacity: 0.6;
+}
+
+.mini-deco {
+  margin-top: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.mini-deco span {
+  height: 3px;
+  flex: 1;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.mini-deco span:first-child {
+  flex: 2;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Large transparent front glass card */
+.glass-front {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250px;
+  height: 150px;
+  margin-left: -125px;
+  margin-top: 20px;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.glass-state {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.glass-float {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(45, 0, 8, 0.78),
+    rgba(25, 0, 4, 0.6)
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 22px 40px rgba(60, 0, 8, 0.5),
+    0 0 14px rgba(255, 255, 255, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.06);
+  animation: floatY 7s ease-in-out infinite reverse;
+}
+
+.glass-outline {
+  position: absolute;
+  inset: -7px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: translate(5px, 5px);
+}
+
+/* small folder-style tab on top-left */
+.glass-tab {
+  position: absolute;
+  top: -9px;
+  left: 18px;
+  width: 70px;
+  height: 10px;
+  border-radius: 8px 8px 0 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-bottom: none;
+  background: rgba(45, 0, 8, 0.7);
+}
+
+.glass-brand {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.glass-brand i {
+  font-size: 0.55rem;
+  color: #ff9aa5;
+}
+
+.glass-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 38%
+  );
+  pointer-events: none;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ============ Tablet ============ */
+@media (max-width: 1024px) {
+  .glass-panel {
+    width: 200px;
+    height: 300px;
+    padding: 14px;
+  }
+  .stage {
+    gap: 14px;
+  }
+  .center-stage {
+    width: 320px;
+  }
+}
+
+/* ============ Mobile: stack panels, keep fan intact ============ */
+@media (max-width: 800px) {
+  .stage {
+    flex-direction: column;
+    padding: 16px 16px 40px;
+    gap: 24px;
+  }
+  .center-stage {
+    order: 1;
+    width: 340px;
+    max-width: 100%;
+    height: 330px;
+  }
+  .left-panel {
+    order: 2;
+  }
+  .right-panel {
+    order: 3;
+  }
+  .glass-panel {
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 380px) {
+  .center-stage {
+    transform: scale(0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mini-float,
+  .glass-float {
+    animation: none;
+  }
+}
+
+/* ============ FLIP PANELS (left + right) ============ */
+.flip-panel {
+  width: 250px;
+  height: 330px;
+  flex-shrink: 0;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+.flip-panel.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.glass-panel.flip-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  padding-top: 22px;
+}
+
+.flip-right .flip-front {
+  justify-content: flex-start;
+  padding-top: 70px;
+}
+
+/* back side content */
+.back-art {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(80, 0, 10, 0.35);
+}
+
+.back-label {
+  margin-top: 12px;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  opacity: 0.75;
+}
+
+.back-name {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.back-series {
+  margin-top: 3px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.back-cat {
+  margin-top: 10px;
+  padding: 4px 12px;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.flip-right .flip-back .back-label {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.flip-right .specs {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+  .flip-panel {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+/* mobile */
+@media (max-width: 800px) {
+  .flip-panel {
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+  }
+  .flip-left {
+    order: 2;
+  }
+  .flip-right {
+    order: 3;
+  }
+}
